@@ -1,6 +1,29 @@
 export function validadorUsuario(usuario) {
-  if (!usuario.email.includes('@')) return false;
-  if (usuario.password.length < 8) return false;
-  if (usuario.age < 18) return false;
-  return true;
+
+  const emailValidator = EmailValidator(usuario.email)
+  const passwordValidator = PasswordValidator(usuario.password)
+  const ageValidator = AgeValidator(usuario.age)
+
+  return emailValidator && passwordValidator && ageValidator;
+}
+
+export function PasswordValidator(password) {
+  if (password.length >= 8)
+      return true
+
+  return false
+}
+
+export function EmailValidator(email) {
+  if (email.includes('@'))
+    return true
+
+  return false
+}
+
+export function AgeValidator(age) {
+  if (age >= 18)
+    return true
+
+  return false
 }
